@@ -3,7 +3,6 @@ import streamlit.components.v1 as components
 
 st.title("House Price Prediction App")
 
-# UI Inputs
 area = st.number_input('Area (sq. ft.)', min_value=100, value=205)
 bedrooms = st.number_input('Bedrooms', min_value=1, value=1)
 bathrooms = st.number_input('Bathrooms', min_value=1, value=1)
@@ -15,7 +14,6 @@ location = st.selectbox(
     ('Johar Town', 'Bahria Town', 'Gulberg', 'DHA Phase 5')
 )
 
-# Prediction button
 if st.button('Predict House Price'):
     base_price = (area * 3000) + (bedrooms * 150000) + (bathrooms * 100000) + (stories * 200000) + (parking * 50000)
     
@@ -27,10 +25,8 @@ if st.button('Predict House Price'):
     }
     
     final_price = base_price * location_multipliers[location]
-    
     st.success(f"Estimated House Price: Rs. {final_price:,.0f}")
 
-# --- 3D Model Section ---
 st.markdown("---")
 st.subheader("🏠 Interactive 3D House Model")
 
