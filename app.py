@@ -55,4 +55,8 @@ if submit:
         st.success(f"Estimated House Price: Rs. {prediction:,.0f}")
     except Exception as e:
         st.error(f"Prediction failed: {e}")
-
+  # Location Selectbox
+location = st.selectbox(
+    'Select Location',
+    ('DHA Phase 5', 'Gulberg', 'Bahria Town', 'Johar Town', 'Model Town')
+)
