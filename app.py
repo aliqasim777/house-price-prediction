@@ -55,12 +55,7 @@ if submit:
         st.success(f"Estimated House Price: Rs. {prediction:,.0f}")
     except Exception as e:
         st.error(f"Prediction failed: {e}")
-  # Location Selectbox
-location = st.selectbox(
-    'Select Location',
-    ('DHA Phase 5', 'Gulberg', 'Bahria Town', 'Johar Town', 'Model Town')
-)
-import streamlit as st
+  import streamlit as st
 
 st.title("House Price Prediction App")
 
@@ -68,6 +63,8 @@ st.title("House Price Prediction App")
 area = st.number_input('Area (sq. ft.)', min_value=100, value=205)
 bedrooms = st.number_input('Bedrooms', min_value=1, value=1)
 bathrooms = st.number_input('Bathrooms', min_value=1, value=1)
+parking = st.number_input('Parking spaces', min_value=0, value=1)
+
 location = st.selectbox(
     'Select Location',
     ('Johar Town', 'Bahria Town', 'Gulberg', 'DHA Phase 5')
@@ -76,14 +73,14 @@ location = st.selectbox(
 # Button click hone par price calculate karein
 if st.button('Predict House Price'):
     # Base price calculation formula
-    base_price = (area * 3000) + (bedrooms * 150000) + (bathrooms * 100000)
+    base_price = (area * 3000) + (bedrooms * 150000) + (bathrooms * 100000) + (parking * 50000)
     
     # Location ke hisab se price multiplier factor
     location_multipliers = {
         'Johar Town': 1.0,      # Normal price
-        'Bahria Town': 1.4,     # 40% extra
-        'Gulberg': 1.6,         # 60% extra
-        'DHA Phase 5': 2.0      # double price
+        'Bahria Town': 1.2,     # 20% extra
+        'Gulberg': 1.5,         # 50% extra
+        'DHA Phase 5': 2.0      # Double price
     }
     
     # Final price calculation
